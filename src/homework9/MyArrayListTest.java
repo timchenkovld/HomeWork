@@ -7,6 +7,7 @@ public class MyArrayListTest {
         myArrayList.add("Kyiv");
         myArrayList.add("London");
         myArrayList.add("Berlin");
+
         System.out.println("myArrayList.size() = " + myArrayList.size());
 
         System.out.println("myArrayList.get(0) = " + myArrayList.get(0));

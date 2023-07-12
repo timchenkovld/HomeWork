@@ -18,6 +18,11 @@ public class MyHashMap<K, V> {
         if (size == table.length) {
             increaseCapacity();
         }
+        putValue(key, value);
+        size++;
+    }
+
+    private void putValue(K key, V value) {
         int index = index(key);
         Entry<K, V> newEntry = new Entry<>(key, value, null);
         if (table[index] == null) {
@@ -42,7 +47,6 @@ public class MyHashMap<K, V> {
             }
             prev.next = newEntry;
         }
-        size++;
     }
 
     private void increaseCapacity() {
@@ -50,7 +54,7 @@ public class MyHashMap<K, V> {
         table = new Entry[table.length * 2];
         for (Entry<K, V> entry : newTable) {
             if (entry != null) {
-                put(entry.key, entry.value);
+                putValue(entry.key, entry.value);
             }
         }
     }
