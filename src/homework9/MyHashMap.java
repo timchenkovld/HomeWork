@@ -5,6 +5,7 @@ import java.util.Arrays;
 public class MyHashMap<K, V> {
     private Entry<K, V>[] table;
     private int capacity = 16;
+    private int size = 0;
 
     public MyHashMap() {
         this.table = new Entry[capacity];
@@ -12,7 +13,10 @@ public class MyHashMap<K, V> {
 
     public void put(K key, V value) {
         if (key == null) {
-            return;
+            throw new IllegalArgumentException("Ключ не може бути null");
+        }
+        if (size == table.length) {
+            increaseCapacity();
         }
         int index = index(key);
         Entry<K, V> newEntry = new Entry<>(key, value, null);
@@ -29,7 +33,7 @@ public class MyHashMap<K, V> {
                         return;
                     } else {
                         newEntry.next = current.next;
-                        prev.next = newEntry;
+                        prev.next = newEntry.next;
                         return;
                     }
                 }
@@ -38,7 +42,19 @@ public class MyHashMap<K, V> {
             }
             prev.next = newEntry;
         }
+        size++;
     }
+
+    private void increaseCapacity() {
+        Entry<K, V>[] newTable = Arrays.copyOf(table, table.length);
+        table = new Entry[table.length * 2];
+        for (Entry<K, V> entry : newTable) {
+            if (entry != null) {
+                put(entry.key, entry.value);
+            }
+        }
+    }
+
 
     public V get(K key) {
         int index = index(key);
@@ -64,9 +80,11 @@ public class MyHashMap<K, V> {
                 if (prev == null) {
                     target = target.next;
                     table[index] = target;
+                    size--;
                     return;
                 } else {
                     prev.next = target.next;
+                    size--;
                     return;
                 }
             }
@@ -76,17 +94,12 @@ public class MyHashMap<K, V> {
     }
 
     public int size() {
-        int counter = 0;
-        for (int i = 0; i < table.length; i++) {
-            if (table[i] != null) {
-                counter++;
-            }
-        }
-        return counter;
+        return size;
     }
 
     public void clear() {
-        Arrays.fill(table, null);
+        table = new Entry[capacity];
+        size = 0;
     }
 
     private int index(K key) {

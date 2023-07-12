@@ -59,12 +59,6 @@ public class MyStack<E> {
     }
 
     public int size() {
-        int counter = 0;
-        for (int i = 0; i < values.length; i++) {
-            if (values[i] != null){
-                counter++;
-            }
-        }
-        return counter;
+        return pointer;
     }
 }

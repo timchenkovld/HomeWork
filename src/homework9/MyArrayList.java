@@ -28,6 +28,9 @@ public class MyArrayList<E> implements MyListMethods<E> {
 
     @Override
     public void remove(int index) {
+        if (index < 0 || index >= pointer) {
+            throw new IndexOutOfBoundsException("Invalid index: " + index);
+        }
         for (int i = index; i < pointer; i++) {
             values[i] = values[i + 1];
         }
@@ -41,6 +44,9 @@ public class MyArrayList<E> implements MyListMethods<E> {
 
     @Override
     public E get(int index) {
+        if (index < 0 || index >= pointer) {
+            throw new IndexOutOfBoundsException("Invalid index: " + index);
+        }
         return (E) values[index];
     }
 
@@ -51,7 +57,7 @@ public class MyArrayList<E> implements MyListMethods<E> {
 
     @Override
     public void clear() {
-        Arrays.fill(values, null);
+        values = new Object[DEFAULT_CAPACITY];
         pointer = 0;
     }
 }
