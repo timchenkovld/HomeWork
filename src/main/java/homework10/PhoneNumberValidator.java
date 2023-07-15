@@ -5,7 +5,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class PhoneNumberValidator {
-    private static final String ABSOLUTE_PATH = "C:\\Users\\Ra1n\\IdeaProjects\\HomeWork\\src\\homework10\\file1.txt";
+    private static final String ABSOLUTE_PATH = "C:\\Users\\Ra1n\\IdeaProjects\\HomeWork\\src\\main\\" +
+            "java\\homework10\\file1.txt";
 
     public void validateNumbersFromFile() {
         File file = new File(ABSOLUTE_PATH);
