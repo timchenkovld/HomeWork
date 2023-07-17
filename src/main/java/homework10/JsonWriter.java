@@ -8,10 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JsonWriter {
-    private static final String INPUT_FILE_PATH = "C:\\Users\\Ra1n\\IdeaProjects\\HomeWork\\src\\main\\" +
-            "java\\homework10\\file2.txt";
-    private static final String OUTPUT_FILE_PATH = "C:\\Users\\Ra1n\\IdeaProjects\\HomeWork\\src\\main\\" +
-            "java\\homework10\\user.json";
+    private static final String INPUT_FILE_PATH = "src/main/java/homework10/file2.txt";
+    private static final String OUTPUT_FILE_PATH = "src/main/java/homework10/user.json";
 
     public void readFromFile() {
         File inputFile = new File(INPUT_FILE_PATH);
@@ -28,6 +26,7 @@ public class JsonWriter {
                 int age = Integer.parseInt(columns[1]);
                 User user = new User(name, age);
                 users.add(user);
+                line = reader.readLine();
             }
         } catch (IOException e) {
             e.printStackTrace();
