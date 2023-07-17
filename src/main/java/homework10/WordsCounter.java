@@ -6,8 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class WordsCounter {
-    private static final String ABSOLUTE_PATH = "C:\\Users\\Ra1n\\IdeaProjects\\HomeWork\\src\\main\\" +
-            "java\\homework10\\words.txt";
+    private static final String ABSOLUTE_PATH = "src/main/java/homework10/words.txt";
     private int theCounter = 0;
     private int isCounter = 0;
     private int sunnyCounter = 0;
